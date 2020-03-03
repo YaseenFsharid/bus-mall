@@ -1,4 +1,5 @@
 
+
 var items =
     ["bag.jpg", "banana.jpg", "bathroom.jpg", "boots.jpg"
         , "breakfast.jpg", "bubblegum.jpg", "chair.jpg", "cthulhu.jpg",
@@ -29,15 +30,21 @@ Item.all = [];
 for (let i = 0; i < items.length; i++) {
     new Item(items[i]);
 }
-
+var clc=[];
+var vew=[];
+var RepeatImage=[];
 var Litem, Mitem, Ritem;
 function render() {
     Litem = Item.all[RandomNumber(0, Item.all.length - 1)];
-    console.log(Litem);
+    
     Mitem = Item.all[RandomNumber(0, Item.all.length - 1)];
     Ritem = Item.all[RandomNumber(0, Item.all.length - 1)];
-    while(Litem === Mitem || Mitem===Ritem ||Ritem===Litem){
-        render();
+  
+    while(Litem === Mitem || Mitem===Ritem ||Ritem===Litem ||RepeatImage.includes(Litem.imagePath) || RepeatImage.includes(Mitem.imagePath)||RepeatImage.includes(Ritem.imagePath)){
+        Litem = Item.all[RandomNumber(0, Item.all.length - 1)];
+    
+        Mitem = Item.all[RandomNumber(0, Item.all.length - 1)];
+        Ritem = Item.all[RandomNumber(0, Item.all.length - 1)];
     }
     Litem1.setAttribute('src', Litem.imagePath);
     Litem1.setAttribute('alt', Litem.name);
@@ -48,10 +55,21 @@ function render() {
     Ritem3.setAttribute('src', Ritem.imagePath);
     Ritem3.setAttribute('alt', Ritem.name);
     Ritem3.setAttribute('title', Ritem.name);
-   
+    console.log(Item.all.length);
+    
+    RepeatImage[0]=Litem.imagePath;
+    RepeatImage[1]=Mitem.imagePath;
+    RepeatImage[2]=Ritem.imagePath;      
 
+    for (let index = 0; index < Item.all.length; index++) {
+    clc[index]=Item.all[index].clicks; 
+    vew[index]=Item.all[index].views;    
+        
+        
+}
 }
 render();
+// var clc=[];
 
 
 imageSection.addEventListener('click', HandleClickOnItem);
@@ -62,6 +80,7 @@ function HandleClickOnItem(event) {
         if (event.target.id !== 'imgsection') {
             if (event.target.id === "Litem-1") {
                 Litem.clicks++;
+                console.log(Litem.clicks);
                 
             } else if (event.target.id === "Mitem-2") {
                 Mitem.clicks++;
@@ -82,6 +101,7 @@ function HandleClickOnItem(event) {
         console.log('more than 25 clicks');
         imageSection.removeEventListener('click', HandleClickOnItem);
         Render2();
+        render3();
     }
 }
 
@@ -93,3 +113,81 @@ function Render2() {
         UL1.appendChild(listitem);
     }
 }
+var itemName =[];
+
+function Addnames() {
+    for (let i =0; i < items.length ;i++) {
+       var item =items[i];
+       itemName.push(item); 
+       
+    } 
+  }
+
+Addnames();
+// function SS(){
+//     for (let index = 0; index < Item.all.length; index++) {
+        
+//         var z =Item.all[index].clicks;
+        
+//         clc.push(z);
+        
+//     }
+    
+// }
+// SS();
+function render3(){
+var ctx = document.getElementById('myChart').getContext('2d');
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: itemName,
+        datasets: [{
+            label: '# of Clicks',
+            data: clc,
+            backgroundColor: 
+                'rgba(255, 99, 132, 0.2)',
+                
+            
+            borderColor: 
+                
+                'rgba(54, 162, 235, 1)',
+                
+            borderWidth: 1
+        },
+        {
+            label: '# of views',
+            data: vew,
+            backgroundColor: 
+                'rgba(255, 99, 230, 0.2)',
+                
+            
+            borderColor: 
+                
+                'rgba(54, 162, 235, 1)',
+                
+            borderWidth: 1
+        }
+        ]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+}
+// if(Litem.name ===Item.all[index].name){
+//     Item.all[index].clicks =Item.all[index].clicks +1;
+//     console.log('first',Item.all[index].clicks);
+//    }if(Ritem.name ===Item.all[index].name){
+//     Item.all[index].clicks++;   
+//     console.log('seconfd',Item.all[index].clicks);
+//    }if(Mitem.name ===Item.all[index].name){
+//        Item.all[index].clicks++; 
+//        console.log('thirsd',Item.all[index].clicks);
+//    }
