@@ -64,12 +64,27 @@ function render() {
     for (let index = 0; index < Item.all.length; index++) {
     clc[index]=Item.all[index].clicks; 
     vew[index]=Item.all[index].views;    
-        
-        
 }
 }
+
 render();
-// var clc=[];
+
+function updateClicks() {
+   var upclicks = JSON.stringify(Item.all);
+   localStorage.setItem('upclick',upclicks);
+}
+function getClicks() {
+    var upclicks = localStorage.getItem('upclick');
+    console.log(upclicks);
+    if(upclicks) {
+      Item.all = JSON.parse(upclicks);
+      console.log(upclicks);
+      render();
+      Render2();
+  
+    }
+  }
+  getClicks();
 
 
 imageSection.addEventListener('click', HandleClickOnItem);
@@ -94,7 +109,7 @@ function HandleClickOnItem(event) {
             Mitem.views++;
             Ritem.views++;
             render();
-
+            updateClicks();
         } 
 
     }else {
@@ -124,17 +139,7 @@ function Addnames() {
   }
 
 Addnames();
-// function SS(){
-//     for (let index = 0; index < Item.all.length; index++) {
-        
-//         var z =Item.all[index].clicks;
-        
-//         clc.push(z);
-        
-//     }
-    
-// }
-// SS();
+
 function render3(){
 var ctx = document.getElementById('myChart').getContext('2d');
 
@@ -181,13 +186,3 @@ var myChart = new Chart(ctx, {
     }
 });
 }
-// if(Litem.name ===Item.all[index].name){
-//     Item.all[index].clicks =Item.all[index].clicks +1;
-//     console.log('first',Item.all[index].clicks);
-//    }if(Ritem.name ===Item.all[index].name){
-//     Item.all[index].clicks++;   
-//     console.log('seconfd',Item.all[index].clicks);
-//    }if(Mitem.name ===Item.all[index].name){
-//        Item.all[index].clicks++; 
-//        console.log('thirsd',Item.all[index].clicks);
-//    }
