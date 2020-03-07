@@ -1,23 +1,24 @@
 
-
+//this is the array of product 
 var items =
     ["bag.jpg", "banana.jpg", "bathroom.jpg", "boots.jpg"
         , "breakfast.jpg", "bubblegum.jpg", "chair.jpg", "cthulhu.jpg",
         "dog-duck.jpg", "dragon.jpg", "pen.jpg", "pet-sweep.jpg", "scissors.jpg"
         , "shark.jpg", "sweep.png", "tauntaun.jpg", "unicorn.jpg",
         "water-can.jpg", "wine-glass.jpg", "usb.gif"];
-
+//collecting the source of the image by id to put the image inside it
 var imageSection = document.querySelector("#imgsection");
 var Litem1 = document.querySelector("#Litem-1");
 var Mitem2 = document.querySelector("#Mitem-2");
 var Ritem3 = document.querySelector("#Ritem-3");
 
 
-
+// this is the random fuction that calculate the product and return an random product position
 function RandomNumber(rang1, rang2) {
 
     return Math.floor(Math.random() * (rang1 - rang2 + 1)) + rang2;
 }
+// This is the constructor to make the object instances
 function Item(name) {
     this.name = name;
     this.clicks = 0;
@@ -27,25 +28,30 @@ function Item(name) {
 }
 Item.all = [];
 
+// here it make the array of product objects
 for (let i = 0; i < items.length; i++) {
     new Item(items[i]);
 }
+
+// this cal array for the names on the chart intalized to filled with names of the product ,view  and repeat imag is the same
 var clc=[];
 var vew=[];
 var RepeatImage=[];
+// the render fuction that it takes the random choosen product and give it to the variables LMR item for shown on the screen 
 var Litem, Mitem, Ritem;
 function render() {
     Litem = Item.all[RandomNumber(0, Item.all.length - 1)];
     
     Mitem = Item.all[RandomNumber(0, Item.all.length - 1)];
     Ritem = Item.all[RandomNumber(0, Item.all.length - 1)];
-  
+  // here we prevent repeating same product on the same round or the round after
     while(Litem === Mitem || Mitem===Ritem ||Ritem===Litem ||RepeatImage.includes(Litem.imagePath) || RepeatImage.includes(Mitem.imagePath)||RepeatImage.includes(Ritem.imagePath)){
         Litem = Item.all[RandomNumber(0, Item.all.length - 1)];
     
         Mitem = Item.all[RandomNumber(0, Item.all.length - 1)];
         Ritem = Item.all[RandomNumber(0, Item.all.length - 1)];
     }
+
     Litem1.setAttribute('src', Litem.imagePath);
     Litem1.setAttribute('alt', Litem.name);
     Litem1.setAttribute('title', Litem.name);
@@ -68,11 +74,12 @@ function render() {
 }
 
 render();
-
+// this is local storage set 
 function updateClicks() {
    var upclicks = JSON.stringify(Item.all);
    localStorage.setItem('upclick',upclicks);
 }
+// this is the local storage get 
 function getClicks() {
     var upclicks = localStorage.getItem('upclick');
     console.log(upclicks);
@@ -86,7 +93,7 @@ function getClicks() {
   }
   getClicks();
 
-
+// this is the event listener for git clicks and views 
 imageSection.addEventListener('click', HandleClickOnItem);
 var totalclicks = 0;
 
@@ -115,11 +122,16 @@ function HandleClickOnItem(event) {
     }else {
         console.log('more than 25 clicks');
         imageSection.removeEventListener('click', HandleClickOnItem);
+        // Here it will showen the scrolled list  
         Render2();
+        
+        // when we call this fuction it will show the chart filled with the appropraite information 
         render3();
     }
 }
 
+
+// list function creation 
 function Render2() {
     var UL1 = document.getElementById("theInformation");
     for (let i = 0; i < Item.all.length; i++) {
@@ -129,7 +141,7 @@ function Render2() {
     }
 }
 var itemName =[];
-
+// here function add names for adding the names to the chart 
 function Addnames() {
     for (let i =0; i < items.length ;i++) {
        var item =items[i];
@@ -139,7 +151,7 @@ function Addnames() {
   }
 
 Addnames();
-
+// this is the chart with the itemname  and clc for clicks data and vew and the views for the same image
 function render3(){
 var ctx = document.getElementById('myChart').getContext('2d');
 
