@@ -124,7 +124,7 @@ function Render2() {
     var UL1 = document.getElementById("theInformation");
     for (let i = 0; i < Item.all.length; i++) {
         var listitem = document.createElement('li');
-        listitem.textContent = `${Item.all[i].name} has ${Item.all[i].clicks} clicks and ${Item.all[i].views} views`;
+        listitem.textContent = `${Item.all[i].name.split('.',1)} has ${Item.all[i].clicks} clicks (has been added) , it has  ${Item.all[i].views} views also`;
         UL1.appendChild(listitem);
     }
 }

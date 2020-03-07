@@ -1,12 +1,99 @@
-#imgsection {
-    max-width: 90%;
-    border: 1px solid greenyellow;
+body{
+  background-color: rgb(206, 202, 201);
+}
+#imgsection{
+  border: rgb(114, 44, 4);
+  margin: -56% 118px 0px 40%;
+  background-color: rgb(58, 58, 63);
+  padding: 16px 0px 39px 36px;
+  
+  }
+  #imgsection h2{
+    padding-left: 135px;
+    font-size: 26px;
+    margin-top: 31px;
+    font-family: 'Monoton', cursive;
+    color: rgb(13, 17, 15);
+    opacity: 0.4;
+  }
+  #theInformation {
+    margin: 26px 0px 0px 37%;
+    max-height: 5;
+    width: 51%;
+    height: 399px;
+    overflow: scroll;
+    opacity: 0.9;
+  }
+  #theInformation li{
+    list-style-type: none;
+    font-family: 'Rancho', cursive; 
+    font-size: 21px;
+    border-left: 5px double rgb(88, 156, 196);
+    padding: 3px 0px 4px 9px;
+    margin: 7px 234px 0px 0px;
+    color:  rgb(58, 58, 63);
+
+  }
+  
+ .css{
+  border: 2px solid rgb(184, 49, 28);
+  padding: 0px;
+  height: 161px;
+  width: 185px;
+  margin: 2px 0px 0px 12px;
+  border-radius: 33%;
+  opacity: 0.9;
+
+}
+ 
+ #header{
+  background-color:  rgb(144, 95, 80);
+  width: 404px;
+  height: 757px;
+ }
+ #smallicon{
+  height: 68px;
+  width: 74px;
+  margin-left: 44px;
+  opacity: 0.4;
+ }
+ .list{
+   
+   list-style-type: none;
+ }
+ #span p{
+  font-family: 'Monoton', cursive;
+    font-size: 49px;
+    margin-left: 129px;
+    margin-top: -77px;
+    opacity: 0.4;
+    animation-name: bas;
+    animation-duration: 4s;
     
   }
- .css{
-  border: 10px solid rgb(233, 218, 176);
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
+ @keyframes bas {
+  from {margin-left :0px;}
+  to {background-color:129px}
+  
+}
+ .list li
+ {
+   border: 2px solid rgb(26, 20, 20);
+   background-color:  rgb(93, 124, 114);
+   border-radius: 102%;  
+   margin: 0px 46px 14px 46px;
+   padding: 67px 0px 71px 15px;
  }
+ .list li a{
+  font-size: 35px;
+  border-radius: 102%;
+  text-decoration: none;
+  font-family: 'Rancho', cursive;
+  color: rgb(59, 43, 43);
+  background-color: rgb(87, 63, 50);
+  padding: 44px 53px 45px 45px;
+  margin-left: 33px;
+  animation-name:;
+ }
+
  
